@@ -1,0 +1,32 @@
+{
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "source": {
+        "include": [
+            "src",
+            "README.md"
+        ],
+        "includePattern": ".+\\.(js(doc|x)?|mjs)$"
+    },
+    "templates": {
+        "default": {
+            "outputSourceFiles": true
+        }
+    },
+    "opts": {
+        "encoding": "utf8",
+        "readme": "./README.md",
+        "destination": "./docs",
+        "recurse": true,
+        "verbose": true,
+        "template": "./node_modules/clean-jsdoc-theme",
+        "theme_opts": {
+            "default_theme": "light"
+        }
+    },
+    "markdown": {
+        "idInHeadings": true,
+        "hardwrap": false
+    }
+}

@@ -1,0 +1,6 @@
+<%= pkg.name %>
+Version: <%= data.version %>
+License: <%= pkg.license %>
+Bundled Dependencies:
+<% _.forEach(dependencies, function (dependency) { %>    <%= dependency.name %> -- <%= dependency.version %>
+<% }) %>
