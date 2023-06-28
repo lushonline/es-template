@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
 
-import MyClass from '../src/index.mjs';
+import { MyClass } from '../src/index.mjs';
 
 describe('hello function', () => {
   it('should be a function', () => {

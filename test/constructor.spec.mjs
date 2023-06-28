@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
 
-import MyClass from '../src/index.mjs';
+import { MyClass } from '../src/index.mjs';
 
 describe('constructor', () => {
   it('should work', () => {
@@ -24,5 +24,10 @@ describe('constructor', () => {
     expect(myclass.options.message).to.equal(message);
     // Check new option added
     expect(myclass.options.newoption).to.equal(newoptionvalue);
+  });
+
+  it('should throw error if options not an object', () => {
+    const message = 'Hello world!';
+    expect(() => new MyClass(message)).to.throw();
   });
 });
