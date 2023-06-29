@@ -28,6 +28,6 @@ describe('constructor', () => {
 
   it('should throw error if options not an object', () => {
     const message = 'Hello world!';
-    expect(() => new MyClass(message)).to.throw();
+    expect(() => new MyClass(message)).to.throw(TypeError);
   });
 });

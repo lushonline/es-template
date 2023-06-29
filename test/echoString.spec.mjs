@@ -24,12 +24,12 @@ describe('echoString function', () => {
 
   it('should throw error if value not supplied', () => {
     const myclass = new MyClass();
-    expect(() => myclass.echoString()).to.throw();
+    expect(() => myclass.echoString()).to.throw(TypeError);
   });
 
   it('should throw error if value supplied not a string', () => {
     const myclass = new MyClass();
     const value = 12345;
-    expect(() => myclass.echoString(value)).to.throw();
+    expect(() => myclass.echoString(value)).to.throw(TypeError);
   });
 });

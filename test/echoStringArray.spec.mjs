@@ -24,18 +24,18 @@ describe('echoStringArray function', () => {
 
   it('should throw error if value not supplied', () => {
     const myclass = new MyClass();
-    expect(() => myclass.echoStringArray()).to.throw();
+    expect(() => myclass.echoStringArray()).to.throw(TypeError);
   });
 
   it('should throw error if value supplied not an array of string', () => {
     const myclass = new MyClass();
     const value = [12345];
-    expect(() => myclass.echoStringArray(value)).to.throw();
+    expect(() => myclass.echoStringArray(value)).to.throw(TypeError);
   });
 
   it('should throw error if value supplied is mixed array of types including string', () => {
     const myclass = new MyClass();
     const value = ['12345', 12345];
-    expect(() => myclass.echoStringArray(value)).to.throw();
+    expect(() => myclass.echoStringArray(value)).to.throw(TypeError);
   });
 });

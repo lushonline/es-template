@@ -3,14 +3,11 @@
     "version": "0.0.0",
     "description": "",
     "keywords": [],
-    "main": "dist/index.js",
-    "module": "dist/index.es.js",
+    "main": "dist/index.cjs.js",
+    "module": "dist/index.esm.js",
     "browser": "dist/index.umd.js",
-    "unpkg": "dist/index.umd.min.js",
-    "types": "dist/index.d.ts",
-    "typings": "dist/index.d.ts",
     "engines": {
-        "node": ">=12",
+        "node": ">=14",
         "npm": ">=6"
     },
     "repository": {
@@ -23,15 +20,15 @@
         "test": "npm-run-all test:mocha",
         "test:mocha": "mocha",
         "test-with-coverage": "c8 npm run test",
-        "prebuild": "npm-run-all lint clean",
+        "prebuild": "npm-run-all test clean",
         "build": "npm-run-all build:*",
         "build:js": "rollup -c scripts/rollup.config.mjs",
         "postbuild": "npm-run-all postbuild:*",
         "postbuild:doc": "rimraf docs && jsdoc --configure jsdoc.json --verbose",
         "clean": "rimraf dist",
         "postclean": "mkdirp dist",
-        "prepublishOnly": "npm run build",
-        "version": "npm run build && npm run test",
+        "prepublishOnly": "",
+        "version": "npm run build",
         "postversion": "git push && git push --tags && npm run changelog && git push",
         "changelog": "rimraf CHANGELOG.md && auto-changelog --template keepachangelog && git add . && git commit . -m changelog && git push"
     },
@@ -73,6 +70,6 @@
         "rollup-plugin-license": "^3.0.1"
     },
     "dependencies": {
-        "ow": "^1.1.1"
+        "check-types": "^11.2.2"
     }
 }

@@ -1,4 +1,4 @@
-import ow from 'ow';
+import check from 'check-types';
 
 class MyClass {
   version = '___version___';
@@ -22,12 +22,12 @@ class MyClass {
    *
    * @param {Object} [options={}] A plain object containing configuration options,
    *                              that will be merged with the defaults
-   * @throws {ArgumentError} if the options is not an object or null/undefined
+   * @throws {TypeError} if the options is not an object or null/undefined
    *
    */
   constructor(options = {}) {
     // Vaidate options is object or empty
-    ow(options, ow.optional.object);
+    check.assert.object(options);
 
     this.options = {
       ...this.#defaultOptions,
@@ -51,13 +51,13 @@ class MyClass {
    *
    * @param {string} value - The value echo back
    * @return {string}
-   * @throws {ArgumentError} if the value is not a string
+   * @throws {TypeError} if the value is not a string
    * @memberof MyClass
    */
   // eslint-disable-next-line class-methods-use-this
   echoString(value) {
     // Validate input is string and is required
-    ow(value, ow.string);
+    check.assert.string(value, 'value must be a string');
     return value;
   }
 
@@ -66,13 +66,13 @@ class MyClass {
    *
    * @param {array<string>} value - The array to echo back
    * @return {array<string>}
-   * @throws {ArgumentError} if the value is not an array of strings
+   * @throws {TypeError} if the value is not an array of strings
    * @memberof MyClass
    */
   // eslint-disable-next-line class-methods-use-this
   echoStringArray(value) {
-    // Validate input is array of strings and is required
-    ow(value, ow.array.ofType(ow.string));
+    // Validate input is array of strings and is required, throws TypeError if invalid
+    check.assert.array.of.nonEmptyString(value);
     return value;
   }
 }
