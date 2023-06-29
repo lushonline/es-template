@@ -28,7 +28,9 @@ export default [
           ___version___: version,
         },
       }),
-      resolve(),
+      resolve({
+        browser: true,
+      }),
       json(),
       commonjs(),
       babel({
@@ -52,85 +54,18 @@ export default [
       {
         file: './dist/index.umd.js',
         format: 'umd',
-        name: 'MyClass',
-        esModule: false,
+        name: 'MyLibrary',
         exports: 'named',
         sourcemap: true,
       },
-    ],
-  },
-  // Browser Builds - Minified
-  {
-    input: './src/index.mjs',
-    plugins: [
-      replace({
-        preventAssignment: true,
-        values: {
-          ___version___: version,
-        },
-      }),
-      resolve(),
-      json(),
-      commonjs(),
-      babel({
-        exclude: 'node_modules/**',
-        babelHelpers: 'bundled',
-      }),
-      terser(),
-      license({
-        banner: {
-          content: {
-            file: join(__dirname, 'banner.ejs'),
-            encoding: 'utf-8', // Default is utf-8
-          },
-          data: {
-            version,
-          },
-        },
-      }),
-      bundleSize(),
-    ],
-    output: [
       {
         file: './dist/index.umd.min.js',
         format: 'umd',
-        name: 'MyClass',
-        esModule: false,
+        name: 'MyLibrary',
         exports: 'named',
         sourcemap: true,
+        plugins: [terser()],
       },
-    ],
-  },
-  // Node Builds
-  {
-    input: './src/index.mjs',
-    external: ['check-types'],
-    plugins: [
-      replace({
-        preventAssignment: true,
-        values: {
-          ___version___: version,
-        },
-      }),
-      json(),
-      babel({
-        exclude: 'node_modules/**',
-        babelHelpers: 'bundled',
-      }),
-      license({
-        banner: {
-          content: {
-            file: join(__dirname, 'banner.ejs'),
-            encoding: 'utf-8', // Default is utf-8
-          },
-          data: {
-            version,
-          },
-        },
-      }),
-      bundleSize(),
-    ],
-    output: [
       {
         file: './dist/index.cjs.js',
         format: 'cjs',
